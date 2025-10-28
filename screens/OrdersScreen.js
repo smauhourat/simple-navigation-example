@@ -17,6 +17,7 @@ const OrdersScreen = ({ navigation  }) => {
   return (
     <View style={styles.container}>
       <FlatList
+        style={{ width: '100%' }}
         data={orders}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => <OrderCard key={item.id} order={item} />}
@@ -32,6 +33,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#eee',
+        width: '100%',
     },
     text: {
         fontSize: 14,
