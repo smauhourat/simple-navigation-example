@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, Pressable } from "react-native";
+import { View, Text, StyleSheet, FlatList } from "react-native";
 
 export default function OrderDetails({ order }) {
     return (
@@ -15,6 +15,13 @@ export default function OrderDetails({ order }) {
                     <Text style={styles.textH1}>Total: ${order.total}</Text>
                 </View>
                 <Text>Proveedor: {order.proveedor_nombre}</Text>
+                <Text style={{ paddingTop: 10, fontWeight: '500' }}>Detalle del Pedido</Text>
+                <FlatList
+                    style={{ width: '100%' }}
+                    data={order.renglones}
+                    keyExtractor={(item) => item.id}
+                    renderItem={({ item }) => <Text style={{ paddingTop: 0 }}>{item.producto_nombre}</Text>}
+                />                
             </View>
         </View>
     )
