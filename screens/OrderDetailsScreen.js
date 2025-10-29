@@ -9,7 +9,7 @@ const OrderDetailsScreen = ({ route }) => {
 
     useEffect(() => {
       async function fetchOrderById(id) {
-        const response = await getOrderById(9);
+        const response = await getOrderById(orderId);
         setOrder(response);
       }
       fetchOrderById(orderId);

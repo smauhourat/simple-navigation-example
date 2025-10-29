@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, FlatList } from "react-native";
+import OrderItem from "./OrderItem";
 
 export default function OrderDetails({ order }) {
     return (
@@ -12,15 +13,18 @@ export default function OrderDetails({ order }) {
             <View style={styles.cardContent}>
                 <View style={[styles.row, { justifyContent: 'space-between' }]}>
                     <Text>Fecha: {order.fecha}</Text>
-                    <Text style={styles.textH1}>Total: ${order.total}</Text>
+                    <Text style={styles.textH1}>Total: ${order.total?.toFixed(2)}</Text>
                 </View>
                 <Text>Proveedor: {order.proveedor_nombre}</Text>
-                <Text style={{ paddingTop: 10, fontWeight: '500' }}>Detalle del Pedido</Text>
+                <Text style={{ paddingTop: 15, fontWeight: '600', fontSize: 16 }}>Detalle del Pedido</Text>
                 <FlatList
-                    style={{ width: '100%' }}
+                    style={{ width: '100%', marginTop: 10 }}
                     data={order.renglones}
                     keyExtractor={(item) => item.id}
-                    renderItem={({ item }) => <Text style={{ paddingTop: 0 }}>{item.producto_nombre}</Text>}
+                    renderItem={({ item }) => 
+                    // <Text style={{ padding: 2 }}>{item.producto_nombre}</Text>
+                    <OrderItem key={item.id} style={{ padding:10 }} item={item} />
+                }
                 />                
             </View>
         </View>
@@ -69,7 +73,7 @@ const styles = StyleSheet.create({
         color: '#f8f8f8',
     },
     textH1: {
-        fontSize: 18,
-        fontWeight: "450",
+        fontSize: 16,
+        fontWeight: "600",
     },
 });
