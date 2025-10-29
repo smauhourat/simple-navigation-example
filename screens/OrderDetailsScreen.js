@@ -2,11 +2,12 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import OrderDetails from '../components/OrderDetails';
 
-const OrderDetailsScreen = () => {
+const OrderDetailsScreen = ({ route }) => {
+    const { orderId } = route.params;
+
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>Welcome to Order Details Screen</Text>
-            <OrderDetails />
+            <OrderDetails orderId={orderId} />
         </View>
     );
 };
