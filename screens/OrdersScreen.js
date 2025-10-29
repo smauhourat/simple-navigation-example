@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { View, StyleSheet, FlatList, Button } from 'react-native';
 import OrderCard from '../components/OrderCard';
 import { geOrders } from '../lib/api';
-import { useNavigation } from '@react-navigation/native';
 
 const OrdersScreen = ({ navigation  }) => {
  const [orders, setOrders] = useState([]);
- const navigate = useNavigation();
 
   useEffect(() => {
     async function fetchOrders() {

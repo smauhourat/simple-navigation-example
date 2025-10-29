@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Pressable } from "react-native";
 
 export default function OrderCard({ order }) {
   const colorByStatus = (status) => {
@@ -17,14 +17,18 @@ export default function OrderCard({ order }) {
     }}; 
 
     return (
-        <View style={styles.card}>
-              <Text style={styles.title}>Order #{order.numero_pedido}</Text>
-              <View style={styles.row}>
-                <Text style={styles.detail}>Customer: {order.proveedor}</Text>
-                <Text style={styles.detail}>Total: ${order.total.toFixed(2)}</Text>
-              </View>
-              <Text style={[styles.status, { backgroundColor: colorByStatus(order.estado) }]}>{order.estado}</Text>
-        </View>
+      <View style={styles.card}>
+        <Pressable 
+            style={{ backgroundColor: 'transparent', margin: 10 }}
+            onPress={() => console.log("Order pressed:", order.id)}>
+            <Text style={styles.title}>Order #{order.numero_pedido}</Text>
+            <View style={styles.row}>
+              <Text style={styles.detail}>Customer: {order.proveedor}</Text>
+              <Text style={styles.detail}>Total: ${order.total.toFixed(2)}</Text>
+            </View>
+            <Text style={[styles.status, { backgroundColor: colorByStatus(order.estado) }]}>{order.estado}</Text>
+        </Pressable>
+      </View>
     );
 
    
