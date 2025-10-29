@@ -22,7 +22,6 @@ export default function OrderDetails({ order }) {
                     data={order.renglones}
                     keyExtractor={(item) => item.id}
                     renderItem={({ item }) => 
-                    // <Text style={{ padding: 2 }}>{item.producto_nombre}</Text>
                     <OrderItem key={item.id} style={{ padding:10 }} item={item} />
                 }
                 />                
