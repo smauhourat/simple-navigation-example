@@ -20,25 +20,18 @@ export default function OrderCard({ order }) {
     }}; 
 
     return (
-      // <View style={styles.card}>
         <Pressable 
             style={styles.card}
-            // onPress={() => console.log("Order pressed:", order.id)}
             onPress={() => navigation.navigate("OrderDetailsScreen", {orderId: order.id})}
             >
             <Text style={styles.title}>Order #{order.numero_pedido}</Text>
             <View style={styles.row}>
               <Text style={styles.detail}>Customer: {order.proveedor}</Text>
               <Text style={styles.detail}>Total: ${order.total.toFixed(2)}</Text>
-            </View>
-            
+            </View>            
             <Text style={[styles.status, { backgroundColor: colorByStatus(order.estado) }]}>{order.estado}</Text>
-            {/* <Button title="Detalle" onPress={() => navigation.navigate("OrderDetailsScreen")} /> */}
         </Pressable>
-      // </View>
     );
-
-   
 }     
 
 const styles = StyleSheet.create({
@@ -54,11 +47,6 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.2,
     shadowRadius: 1.41,    
-    // backgroundColor: "#f8f8f8",
-    // padding: 12,
-    // borderRadius: 8,
-    // marginBottom: 10,
-    // elevation: 2,
   },
   title: {
     fontWeight: "bold",

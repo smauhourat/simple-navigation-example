@@ -22,7 +22,7 @@ const OrdersScreen = ({ navigation  }) => {
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => <OrderCard key={item.id} order={item} />}
       />
-      <Button title="Stack" onPress={() => navigation.navigate("StackScreen")} />
+      {/* <Button title="Stack" onPress={() => navigation.navigate("StackScreen")} /> */}
     </View>
   );    
 };

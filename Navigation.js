@@ -44,9 +44,9 @@ function Navigation() {
     return (
         <NavigationContainer>
             <Tab.Navigator>
-                {/* <Tab.Screen name="Home" component={HomeScreen} options={{ 
+                <Tab.Screen name="Home" component={HomeScreen} options={{ 
                     title: 'RestoApp',
-                    tabBarIcon: (props) => <Icon name="home-outline" {...props} /> }} /> */}
+                    tabBarIcon: (props) => <Icon name="home-outline" {...props} /> }} />
 
                 <Tab.Screen name="Orders" component={StackOrders} options={{ 
                     title: 'Pedidos',
@@ -55,10 +55,6 @@ function Navigation() {
 
                 <Tab.Screen name="NuevoPedido" component={NewOrderScreen} options={{ 
                     title: 'Nuevo Pedido',
-                    tabBarIcon: (props) => <Icon name="book-plus-outline" {...props} /> }} />
-
-                <Tab.Screen name="OrderDetail" component={OrderDetailsScreen} options={{ 
-                    title: 'Detalle Pedido',
                     tabBarIcon: (props) => <Icon name="book-plus-outline" {...props} /> }} />
 
                 <Tab.Screen name="Settings" component={SettingsScreen} options={{ 
