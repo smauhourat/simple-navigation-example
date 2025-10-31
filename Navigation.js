@@ -33,7 +33,7 @@ function StackOrders() {
             <OrderStackNavigation.Screen
                 name="OrderDetailsScreen"
                 component={OrderDetailsScreen}
-                options={{ title: 'Detalle Orden', tabBarStyle: { display: 'none' } }}
+                options={{ title: 'Detalle Orden' }}
             />            
         </OrderStackNavigation.Navigator>
         
@@ -41,24 +41,10 @@ function StackOrders() {
 };
 
 function Navigation() {
+
     return (
         <NavigationContainer>
             <Tab.Navigator
-                screenOptions={({ route }) => ({
-                    tabBarStyle: ({ focused, state, navigation }) => {
-                        // Verificar si estamos en OrderDetailsScreen
-                        const routeName = state?.routes[state.index]?.state?.routes[state.index]?.name;
-                        return {
-                            display: routeName === 'OrderDetailsScreen' ? 'none' : 'flex',
-                            // Estilos base del tabBar
-                            backgroundColor: '#ffffff',
-                            borderTopWidth: 1,
-                            borderTopColor: '#e0e0e0',
-                            paddingBottom: 5,
-                            paddingTop: 5,
-                        };
-                    }
-                })}
             >                
                 <Tab.Screen name="Home" component={HomeScreen} options={{ 
                     title: 'RestoApp',

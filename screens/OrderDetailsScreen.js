@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useLayoutEffect  } from 'react';
 import { View, StyleSheet } from 'react-native';
 import OrderDetails from '../components/OrderDetails';
 import { getOrderById } from '../lib/api';
 
-const OrderDetailsScreen = ({ route }) => {
+const OrderDetailsScreen = ({ route, navigation }) => {
     const { orderId } = route.params;
     const [ order, setOrder ] = useState([]);
 
@@ -14,6 +14,18 @@ const OrderDetailsScreen = ({ route }) => {
       }
       fetchOrderById(orderId);
     }, []);
+
+    // useLayoutEffect(() => {
+    //     navigation.getParent()?.setOptions({
+    //         tabBarStyle: { display: 'none' }
+    //     });
+
+    //     return () => {
+    //         navigation.getParent()?.setOptions({
+    //             tabBarStyle: { display: 'flex' }
+    //         });
+    //     };
+    // }, [navigation]);
 
     return (
         <View style={styles.container}>
@@ -26,7 +38,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'start',
-        paddingTop: 20,
+        paddingTop: 10,
         alignItems: 'center',
         backgroundColor: '#eee',
     },

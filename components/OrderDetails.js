@@ -1,6 +1,8 @@
 import React from "react";
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import { View, Text, StyleSheet, FlatList, Button, TouchableOpacity } from "react-native";
 import OrderItem from "./OrderItem";
+import Icon from '@expo/vector-icons/MaterialCommunityIcons';
+import IconButton from './ui/IconButton';
 
 export default function OrderDetails({ order }) {
     return (
@@ -8,6 +10,14 @@ export default function OrderDetails({ order }) {
             <View style={styles.cardHeader}>
                 <View style={styles.row}>
                     <Text style={styles.textHeader}>Pedido #{order.numero_pedido}</Text>
+                </View>
+            </View>
+            <View style={styles.cardActions}>
+                <View style={styles.row}>
+
+                    {/* Aquí puedes agregar botones o acciones relacionadas con la orden */}
+                    <IconButton title="Enviar" iconName="whatsapp" backgroundColor='#128c7e' onPress={() => alert('Pressed')} />
+                        
                 </View>
             </View>
             <View style={styles.cardContent}>
@@ -41,7 +51,7 @@ const styles = StyleSheet.create({
         width: "95%",                     // ✅ ocupa el 95% del ancho del contenedor
         alignSelf: "center",              // ✅ centra horizontalmente
         backgroundColor: "#1976d2",
-        padding: 12,
+        padding: 10,
         borderRadius: 4,
         marginBottom: 10,
         elevation: 2,
@@ -50,6 +60,9 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.2,
         shadowRadius: 1.41,    
     },    
+    cardActions: {
+        paddingBottom: 10,
+    },
     cardContent: {
         flex: 1,
         width: "95%",    
