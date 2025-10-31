@@ -13,11 +13,10 @@ export default function OrderDetails({ order }) {
                 </View>
             </View>
             <View style={styles.cardActions}>
-                <View style={styles.row}>
-
-                    {/* Aquí puedes agregar botones o acciones relacionadas con la orden */}
-                    <IconButton title="Enviar" iconName="whatsapp" backgroundColor='#128c7e' onPress={() => alert('Pressed')} />
-                        
+                <View style={styles.rowActions}>
+                    <IconButton title="Email" iconName="email" backgroundColor='#9c27b0' onPress={() => alert('send by email')} />
+                    <IconButton title="WhatsApp" iconName="whatsapp" backgroundColor='#128c7e' onPress={() => alert('send by whatsapp')} />
+                    <IconButton title="QrCode" iconName="qrcode" backgroundColor='#0288d1' onPress={() => alert('generate qr')} />
                 </View>
             </View>
             <View style={styles.cardContent}>
@@ -25,7 +24,10 @@ export default function OrderDetails({ order }) {
                     <Text>Fecha: {order.fecha}</Text>
                     <Text style={styles.textH1}>Total: ${order.total?.toFixed(2)}</Text>
                 </View>
-                <Text>Proveedor: {order.proveedor_nombre}</Text>
+                <View style={[styles.row, { justifyContent: 'space-between' }]}>    
+                    <Text>Proveedor: {order.proveedor_nombre}</Text>
+                    <Text style={styles.textH1}>Items: {order.renglones?.length}</Text>
+                </View>
                 <Text style={{ paddingTop: 15, fontWeight: '600', fontSize: 16 }}>Detalle del Pedido</Text>
                 <FlatList
                     style={{ width: '100%', marginTop: 10 }}
@@ -71,13 +73,18 @@ const styles = StyleSheet.create({
         backgroundColor: "#fff",   //9aa6b3ff
     },
     row: {
-        // flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
-
-        justifyContent: 'center',
         alignItems: 'center',
         width: '100%',
+    },
+    rowActions: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        width: '100%',
+        marginRight: 10,
     },
     textHeader: {
         fontSize: 14,
