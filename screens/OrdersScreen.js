@@ -9,6 +9,7 @@ const OrdersScreen = ({ navigation  }) => {
   useEffect(() => {
     async function fetchOrders() {
       const response = await geOrders();
+      console.log(response.data);
       setOrders(response.data);
     }
     fetchOrders();

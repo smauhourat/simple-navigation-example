@@ -24,10 +24,14 @@ export default function OrderCard({ order }) {
             style={styles.card}
             onPress={() => navigation.navigate("OrderDetailsScreen", {orderId: order.id})}
             >
-            <Text style={styles.title}>Order #{order.numero_pedido}</Text>
+            <Text style={styles.title}>#{order.numero_pedido}</Text>
             <View style={styles.row}>
-              <Text style={styles.detail}>Customer: {order.proveedor}</Text>
+              <Text style={styles.detail}>Fecha: {order.fecha}</Text>
               <Text style={styles.detail}>Total: ${order.total.toFixed(2)}</Text>
+            </View>             
+            <View style={styles.row}>
+              <Text style={styles.detail}>Proveedor: {order.proveedor}</Text>
+              <Text style={styles.detail}>Items: {order.cantidad_renglones}</Text>
             </View>            
             <Text style={[styles.status, { backgroundColor: colorByStatus(order.estado) }]}>{order.estado}</Text>
         </Pressable>
@@ -55,8 +59,8 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingVertical: 8,
-    borderBottomWidth: 1, // Line below each row
+    paddingVertical: 6,
+    //borderBottomWidth: 1, // Line below each row
     borderBottomColor: '#eee',
   },  
   status: {
