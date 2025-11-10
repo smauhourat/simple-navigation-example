@@ -33,7 +33,7 @@ function StackOrders() {
             <OrderStackNavigation.Screen
                 name="OrderDetailsScreen"
                 component={OrderDetailsScreen}
-                options={{ title: 'Detalle Orden' }}
+                options={{ title: 'Detalle Pedido' }}
             />            
         </OrderStackNavigation.Navigator>
         

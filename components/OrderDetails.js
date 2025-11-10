@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, FlatList, Button, TouchableOpacity } from "reac
 import OrderItem from "./OrderItem";
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 import IconButton from './ui/IconButton';
+import { colorByStatus } from './utils/statusColors';
 
 export default function OrderDetails({ order }) {
     return (
@@ -10,6 +11,7 @@ export default function OrderDetails({ order }) {
             <View style={styles.cardHeader}>
                 <View style={styles.row}>
                     <Text style={styles.textHeader}>Pedido #{order.numero_pedido}</Text>
+                    <Text style={[styles.textHeaderEstado, {backgroundColor: colorByStatus(order.estado)}]}> {order.estado}</Text>
                 </View>
             </View>
             <View style={styles.cardActions}>
@@ -91,6 +93,15 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: '#f8f8f8',
     },
+    textHeaderEstado: {
+        fontSize: 14,
+        fontWeight: 'bold',
+        color: '#f8f8f8',
+        paddingHorizontal: 8,
+        paddingVertical: 4,
+        borderRadius: 4,
+        backgroundColor: '#ff9800',
+    },    
     textH1: {
         fontSize: 16,
         fontWeight: "600",

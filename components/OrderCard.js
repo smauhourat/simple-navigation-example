@@ -1,23 +1,10 @@
 import React from "react";
 import { View, Text, StyleSheet, Pressable, Button } from "react-native";
 import { useNavigation } from '@react-navigation/native';
+import { colorByStatus } from './utils/statusColors';
 
 export default function OrderCard({ order }) {
   const navigation = useNavigation();
-
-  const colorByStatus = (status) => {
-    switch (status) {
-      case 'pendiente':
-        return '#f5db8eff'; // Yellow
-      case 'enviado':
-        return '#75abfcff'; // Blue
-      case 'recibido':
-        return '#8ab9a3ff'; // Green
-      case 'cancelado':
-        return '#e98993ff'; // Red
-      default:
-        return '#a8aaacff'; // Gray
-    }}; 
 
     return (
         <Pressable 
@@ -65,6 +52,8 @@ const styles = StyleSheet.create({
   },  
   status: {
     backgroundColor: "#d1e7dd",
-    padding: 4,
+        paddingHorizontal: 8,
+        paddingVertical: 4,
+        borderRadius: 4,
   }
 });    
