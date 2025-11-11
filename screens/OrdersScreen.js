@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { View, StyleSheet, FlatList } from 'react-native';
+import { View, StyleSheet, FlatList, Button } from 'react-native';
 import OrderCard from '../components/OrderCard';
 import { geOrders } from '../lib/api';
 
@@ -22,7 +22,7 @@ const OrdersScreen = ({ navigation  }) => {
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => <OrderCard key={item.id} order={item} />}
       />
-      {/* <Button title="Stack" onPress={() => navigation.navigate("StackScreen")} /> */}
+      <Button title="Stack" onPress={() => navigation.navigate("StackScreen")} />
     </View>
   );    
 };

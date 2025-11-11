@@ -18,10 +18,10 @@ const OrderStackNavigation = createStackNavigator();
 function StackOrders() {
     return (
         <OrderStackNavigation.Navigator
-            initialRouteName="OrdersScreen"
+            initialRouteName="OrdersScreenX"
         >
             <OrderStackNavigation.Screen
-                name="OrdersScreen"
+                name="OrdersScreenX"
                 component={OrdersScreen}
                 options={{ title: 'Lista de Pedidos' }}
             />
@@ -50,10 +50,21 @@ function Navigation() {
                     title: 'RestoApp',
                     tabBarIcon: (props) => <Icon name="home-outline" {...props} /> }} />
 
-                <Tab.Screen name="Orders" component={StackOrders} options={{ 
-                    title: 'Pedidos',
-                    headerShown: false,
-                    tabBarIcon: (props) => <Icon name="book-outline" {...props} /> }} />
+                <Tab.Screen name="Orders" 
+                    component={StackOrders} 
+                    options={{ 
+                        title: 'Pedidos',
+                        headerShown: false,
+                        tabBarIcon: (props) => <Icon name="book-outline" {...props} /> }} 
+                    listeners={({ navigation, route }) => ({
+                        tabPress: e => {
+                        // si ya está enfocada la pestaña, hacer popToTop en el stack
+                        const stackNav = navigation.getParent(); // getParent no siempre necesario; este handler corre en Tab, navigation aquí es el de Tab
+                        // usar navigate con screen para forzar ir a la pantalla inicial del stack
+                        navigation.navigate('Orders', { screen: 'OrdersScreenX' });
+                        },    
+                    })}                    
+                />
 
                 <Tab.Screen name="NuevoPedido" component={NewOrderScreen} options={{ 
                     title: 'Nuevo Pedido',
