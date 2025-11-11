@@ -15,18 +15,6 @@ const OrderDetailsScreen = ({ route, navigation }) => {
       fetchOrderById(orderId);
     }, []);
 
-    // useLayoutEffect(() => {
-    //     navigation.getParent()?.setOptions({
-    //         tabBarStyle: { display: 'none' }
-    //     });
-
-    //     return () => {
-    //         navigation.getParent()?.setOptions({
-    //             tabBarStyle: { display: 'flex' }
-    //         });
-    //     };
-    // }, [navigation]);
-
     return (
         <View style={styles.container}>
             <OrderDetails order={order} />
