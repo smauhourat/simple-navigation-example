@@ -17,24 +17,26 @@ export default function ProductItem({ product, quantity = 0, onChange, onAssign,
           style={styles.btn} 
           onPress={() => onChange(Math.max(0, quantity - 1))}
         >
-          <Icon name="minus" size={18} color="#fff" />
+          <Icon name="chevron-down" size={18} color="#fff" />
         </Pressable>
         <Text style={styles.qty}>{quantity}</Text>
         <Pressable 
           style={[styles.btn, styles.btnPlus]} 
           onPress={() => onChange(quantity + 1)}
         >
-          <Icon name="plus" size={18} color="#fff" />
+          <Icon name="chevron-up" size={18} color="#fff" />
         </Pressable>
       </View>
 
       {!isAssigned && (
         <Pressable
-          style={[styles.assignBtn, quantity === 0 && styles.assignBtnDisabled]}
+          // style={[styles.assignBtn, quantity === 0 && styles.assignBtnDisabled]}
+          style={styles.assignBtn2}
           onPress={() => onAssign?.(product.id)}
           disabled={quantity === 0}
         >
-          <Text style={styles.assignBtnText}>ASIGNAR</Text>
+          {/* <Text style={styles.assignBtnText}>ASIGNAR</Text> */}
+          <Icon name="plus-circle" size={30} color="rgba(147, 255, 114, 0.84)" />
         </Pressable>
       )}
 
@@ -43,7 +45,7 @@ export default function ProductItem({ product, quantity = 0, onChange, onAssign,
           style={styles.deleteBtn}
           onPress={() => onRemove?.(product.id)}
         >
-          <Icon name="delete-outline" size={20} color="#dc3545" />
+          <Icon name="minus-circle" size={30} color="#dc3545" />
         </Pressable>
       )}
     </View>
@@ -109,4 +111,8 @@ const styles = StyleSheet.create({
     marginLeft: 12,
     padding: 8,
   },
+  assignBtn2: {
+    marginLeft: 12,
+    padding: 8,
+  }
 });
