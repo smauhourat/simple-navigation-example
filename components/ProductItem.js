@@ -1,7 +1,10 @@
 import React from 'react';
 import { View, Text, Pressable, StyleSheet } from 'react-native';
+import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 
-export default function ProductItem({ product, quantity = 0, onChange }) {
+export default function ProductItem({ product, quantity = 0, onChange, onAssign, onRemove, variant = 'available' }) {
+  const isAssigned = variant === 'assigned';
+
   return (
     <View style={styles.row}>
       <View style={{ flex: 1 }}>
@@ -10,24 +13,100 @@ export default function ProductItem({ product, quantity = 0, onChange }) {
       </View>
 
       <View style={styles.controls}>
-        <Pressable style={styles.btn} onPress={() => onChange(Math.max(0, quantity - 1))}>
-          <Text style={styles.btnText}>-</Text>
+        <Pressable 
+          style={styles.btn} 
+          onPress={() => onChange(Math.max(0, quantity - 1))}
+        >
+          <Icon name="minus" size={18} color="#fff" />
         </Pressable>
         <Text style={styles.qty}>{quantity}</Text>
-        <Pressable style={styles.btn} onPress={() => onChange(quantity + 1)}>
-          <Text style={styles.btnText}>+</Text>
+        <Pressable 
+          style={[styles.btn, styles.btnPlus]} 
+          onPress={() => onChange(quantity + 1)}
+        >
+          <Icon name="plus" size={18} color="#fff" />
         </Pressable>
       </View>
+
+      {!isAssigned && (
+        <Pressable
+          style={[styles.assignBtn, quantity === 0 && styles.assignBtnDisabled]}
+          onPress={() => onAssign?.(product.id)}
+          disabled={quantity === 0}
+        >
+          <Text style={styles.assignBtnText}>ASIGNAR</Text>
+        </Pressable>
+      )}
+
+      {isAssigned && (
+        <Pressable
+          style={styles.deleteBtn}
+          onPress={() => onRemove?.(product.id)}
+        >
+          <Icon name="delete-outline" size={20} color="#dc3545" />
+        </Pressable>
+      )}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  row: { flexDirection: 'row', alignItems: 'center', padding: 10, backgroundColor: '#fff', borderRadius: 6 },
-  name: { fontWeight: '600' },
-  price: { color: '#666' },
-  controls: { flexDirection: 'row', alignItems: 'center' },
-  btn: { width: 36, height: 36, borderRadius: 6, backgroundColor: '#1976d2', justifyContent: 'center', alignItems: 'center' },
-  btnText: { color: '#fff', fontWeight: '700' },
-  qty: { marginHorizontal: 10, minWidth: 20, textAlign: 'center' },
+  row: { 
+    flexDirection: 'row', 
+    alignItems: 'center', 
+    padding: 12, 
+    backgroundColor: '#fff', 
+    borderRadius: 8, 
+    marginBottom: 8,
+    elevation: 1,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+  },
+  name: { fontWeight: '600', fontSize: 14 },
+  price: { color: '#666', fontSize: 12, marginTop: 4 },
+  controls: { 
+    flexDirection: 'row', 
+    alignItems: 'center',
+    marginLeft: 12,
+  },
+  btn: { 
+    width: 32, 
+    height: 32, 
+    borderRadius: 6, 
+    backgroundColor: '#1976d2', 
+    justifyContent: 'center', 
+    alignItems: 'center',
+  },
+  btnPlus: {
+    backgroundColor: '#28a745',
+  },
+  qty: { 
+    marginHorizontal: 10, 
+    minWidth: 24, 
+    textAlign: 'center', 
+    fontWeight: '700',
+    fontSize: 14,
+  },
+  assignBtn: {
+    marginLeft: 12,
+    paddingVertical: 8,
+    paddingHorizontal: 14,
+    backgroundColor: '#007bff',
+    borderRadius: 6,
+  },
+  assignBtnDisabled: {
+    backgroundColor: '#ccc',
+    opacity: 0.6,
+  },
+  assignBtnText: {
+    color: '#fff',
+    fontWeight: '600',
+    fontSize: 12,
+  },
+  deleteBtn: { 
+    marginLeft: 12,
+    padding: 8,
+  },
 });
