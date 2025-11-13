@@ -16,7 +16,7 @@ export default function ProductList({ products = [], tempQuantities = {}, select
 
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>Productos Disponibles</Text>
+      {/* <Text style={styles.label}>Productos Disponibles</Text> */}
       <FlatList
         scrollEnabled={false}
         data={availableProducts}

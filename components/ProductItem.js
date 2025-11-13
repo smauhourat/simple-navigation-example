@@ -6,7 +6,7 @@ export default function ProductItem({ product, quantity = 0, onChange, onAssign,
   const isAssigned = variant === 'assigned';
 
   return (
-    <View style={styles.row}>
+    <View style={[styles.row, isAssigned && styles.rowAssigned]}>
       <View style={{ flex: 1 }}>
         <Text style={styles.name}>{product.name}</Text>
         <Text style={styles.price}>${product.price.toFixed(2)}</Text>
@@ -21,7 +21,7 @@ export default function ProductItem({ product, quantity = 0, onChange, onAssign,
         </Pressable>
         <Text style={styles.qty}>{quantity}</Text>
         <Pressable 
-          style={[styles.btn, styles.btnPlus]} 
+          style={styles.btn} 
           onPress={() => onChange(quantity + 1)}
         >
           <Icon name="chevron-up" size={18} color="#fff" />
@@ -31,12 +31,12 @@ export default function ProductItem({ product, quantity = 0, onChange, onAssign,
       {!isAssigned && (
         <Pressable
           // style={[styles.assignBtn, quantity === 0 && styles.assignBtnDisabled]}
-          style={styles.assignBtn2}
+          style={[styles.assignBtn2, quantity === 0 && styles.assignBtnDisabled]}
           onPress={() => onAssign?.(product.id)}
           disabled={quantity === 0}
         >
           {/* <Text style={styles.assignBtnText}>ASIGNAR</Text> */}
-          <Icon name="plus-circle" size={30} color="rgba(147, 255, 114, 0.84)" />
+          <Icon name="plus-box" size={30} color="#28a745" />
         </Pressable>
       )}
 
@@ -45,7 +45,7 @@ export default function ProductItem({ product, quantity = 0, onChange, onAssign,
           style={styles.deleteBtn}
           onPress={() => onRemove?.(product.id)}
         >
-          <Icon name="minus-circle" size={30} color="#dc3545" />
+          <Icon name="minus-box" size={30} color="#dc3545" />
         </Pressable>
       )}
     </View>
@@ -66,6 +66,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 2,
   },
+  rowAssigned: {
+    backgroundColor: '#EAF6ED'
+  },
   name: { fontWeight: '600', fontSize: 14 },
   price: { color: '#666', fontSize: 12, marginTop: 4 },
   controls: { 
@@ -74,9 +77,9 @@ const styles = StyleSheet.create({
     marginLeft: 12,
   },
   btn: { 
-    width: 32, 
-    height: 32, 
-    borderRadius: 6, 
+    width: 25, 
+    height: 25, 
+    borderRadius: 25,
     backgroundColor: '#1976d2', 
     justifyContent: 'center', 
     alignItems: 'center',
@@ -99,8 +102,8 @@ const styles = StyleSheet.create({
     borderRadius: 6,
   },
   assignBtnDisabled: {
-    backgroundColor: '#ccc',
-    opacity: 0.6,
+    color: '#ccc',
+    opacity: 0.4,
   },
   assignBtnText: {
     color: '#fff',

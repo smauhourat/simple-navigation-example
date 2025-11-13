@@ -106,7 +106,7 @@ export default function NewOrderScreen({ navigation }) {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.h1}>Nuevo Pedido</Text>
+      {/* <Text style={styles.h1}>Nuevo Pedido</Text> */}
 
       <ProviderPicker
         providers={providers}

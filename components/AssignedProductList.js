@@ -33,10 +33,10 @@ export default function AssignedProductList({ products = [], selectedProducts = 
     </View>
   );
 }
-
+// color: '#1976d2' },
 const styles = StyleSheet.create({
   container: { marginVertical: 12 },
-  label: { fontWeight: '600', marginBottom: 10, fontSize: 14, color: '#1976d2' },
+  label: { fontWeight: '600', marginBottom: 10, fontSize: 18}, 
   emptyContainer: { 
     marginVertical: 12, 
     padding: 12, 
