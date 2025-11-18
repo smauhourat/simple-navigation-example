@@ -18,7 +18,7 @@ export default function ProductList({ products = [], tempQuantities = {}, select
     <View style={styles.container}>
       {/* <Text style={styles.label}>Productos Disponibles</Text> */}
       <FlatList
-        scrollEnabled={false}
+        scrollEnabled={true}
         data={availableProducts}
         keyExtractor={p => p.id}
         renderItem={({ item }) => (
@@ -36,7 +36,7 @@ export default function ProductList({ products = [], tempQuantities = {}, select
 }
 
 const styles = StyleSheet.create({
-  container: { marginVertical: 12 },
+  container: { marginVertical: 12, maxHeight: 300 },
   label: { fontWeight: '600', marginBottom: 10, fontSize: 14, color: '#111' },
   emptyContainer: { 
     marginVertical: 12, 

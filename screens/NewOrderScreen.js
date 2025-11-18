@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Alert, ScrollView } from 'react-native';
+import CustomAlert from '../components/ui/CustomAlert';
 import ProviderPicker from '../components/ProviderPicker';
 import ProductList from '../components/ProductList';
 import AssignedProductList from '../components/AssignedProductList';
@@ -18,6 +19,17 @@ export default function NewOrderScreen({ navigation }) {
   const [deliveryDate, setDeliveryDate] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+  const [showAlert, setShowAlert] = useState({show: false, message: ''});
+
+  const handleConfirm = () => {
+    console.log('Confirmed!');
+    setShowAlert({show: false, message: ''});
+  };
+
+  const handleCancel = () => {
+    console.log('Cancelled!');
+    setShowAlert({show: false, message: ''});
+  };  
 
   useEffect(() => {
     setProviders(getProviders());
@@ -88,26 +100,44 @@ export default function NewOrderScreen({ navigation }) {
   };
 
   const handleCreateOrder = () => {
-    if (!selectedProvider) return Alert.alert('Selecciona un proveedor');
-    if (Object.keys(selectedProducts).length === 0) return Alert.alert('Selecciona al menos un producto');
-    const orderPayload = {
-      proveedorId: selectedProvider.id,
-      proveedorNombre: selectedProvider.name,
-      fechaEntrega: deliveryDate.toISOString(),
-      items: Object.entries(selectedProducts).map(([id, qty]) => {
-        const prod = products.find(p => p.id === id);
-        return { id, nombre: prod?.name || 'N/A', precio: prod?.price || 0, cantidad: qty };
-      }),
-    };
-    Alert.alert('Orden creada', `Items: ${orderPayload.items.length}`, [
-      { text: 'OK', onPress: () => navigation.navigate('Orders') },
-    ]);
+
+    if (!selectedProvider) 
+      return setShowAlert({show: true, title: 'Atencion!', showCancel: false, message: 'Debe seleccionar un proveedor'});
+
+    if (Object.keys(selectedProducts).length === 0) 
+      return setShowAlert({show: true, title: 'Atencion!', showCancel: false, message: 'No existen productos en la Orden'});
+
+    // console.log('Crear orden', { selectedProvider, selectedProducts, deliveryDate });
+    // setShowAlert({show: true, title: 'Atencion!', message: 'Are you sure you want to create this orderrrrr?'});
+    
+    // if (!selectedProvider) return Alert.alert('Selecciona un proveedor');
+    // if (Object.keys(selectedProducts).length === 0) return Alert.alert('Selecciona al menos un producto');
+    // const orderPayload = {
+    //   proveedorId: selectedProvider.id,
+    //   proveedorNombre: selectedProvider.name,
+    //   fechaEntrega: deliveryDate.toISOString(),
+    //   items: Object.entries(selectedProducts).map(([id, qty]) => {
+    //     const prod = products.find(p => p.id === id);
+    //     return { id, nombre: prod?.name || 'N/A', precio: prod?.price || 0, cantidad: qty };
+    //   }),
+    // };
+    // Alert.alert('Orden creada', `Items: ${orderPayload.items.length}`, [
+    //   { text: 'OK', onPress: () => navigation.navigate('Orders') },
+    // ]);
+
   };
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
       {/* <Text style={styles.h1}>Nuevo Pedido</Text> */}
-
+        <CustomAlert
+          visible={showAlert.show}
+          title={showAlert?.title || 'Confirmar Acción'}
+          message={showAlert.message}
+          onConfirm={handleConfirm}
+          onCancel={handleCancel}
+          showCancel={showAlert?.showCancel}
+        />
       <ProviderPicker
         providers={providers}
         selected={selectedProvider}

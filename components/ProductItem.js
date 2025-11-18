@@ -30,12 +30,10 @@ export default function ProductItem({ product, quantity = 0, onChange, onAssign,
 
       {!isAssigned && (
         <Pressable
-          // style={[styles.assignBtn, quantity === 0 && styles.assignBtnDisabled]}
-          style={[styles.assignBtn2, quantity === 0 && styles.assignBtnDisabled]}
+          style={[styles.assignBtn, quantity === 0 && styles.assignBtnDisabled]}
           onPress={() => onAssign?.(product.id)}
           disabled={quantity === 0}
         >
-          {/* <Text style={styles.assignBtnText}>ASIGNAR</Text> */}
           <Icon name="plus-box" size={30} color="#28a745" />
         </Pressable>
       )}
@@ -94,27 +92,16 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     fontSize: 14,
   },
-  assignBtn: {
-    marginLeft: 12,
-    paddingVertical: 8,
-    paddingHorizontal: 14,
-    backgroundColor: '#007bff',
-    borderRadius: 6,
-  },
+
   assignBtnDisabled: {
     color: '#ccc',
     opacity: 0.4,
-  },
-  assignBtnText: {
-    color: '#fff',
-    fontWeight: '600',
-    fontSize: 12,
   },
   deleteBtn: { 
     marginLeft: 12,
     padding: 8,
   },
-  assignBtn2: {
+  assignBtn: {
     marginLeft: 12,
     padding: 8,
   }
