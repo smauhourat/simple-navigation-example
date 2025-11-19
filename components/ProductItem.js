@@ -8,8 +8,8 @@ export default function ProductItem({ product, quantity = 0, onChange, onAssign,
   return (
     <View style={[styles.row, isAssigned && styles.rowAssigned]}>
       <View style={{ flex: 1 }}>
-        <Text style={styles.name}>{product.name}</Text>
-        <Text style={styles.price}>${product.price.toFixed(2)}</Text>
+        <Text style={styles.name}>{product.nombre}</Text>
+        <Text style={styles.price}>${product.precio_unitario.toFixed(2)}</Text>
       </View>
 
       <View style={styles.controls}>

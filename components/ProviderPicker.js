@@ -4,7 +4,7 @@ import { Picker } from '@react-native-picker/picker';
 
 export default function ProviderPicker({ providers = [], selected, onSelect }) {
   const items = [
-    { id: '', name: 'Seleccione el Proveedor' }, // ítem 0
+    { id: '', nombre: 'Seleccione el Proveedor' }, // ítem 0
     ...providers,
   ];  
   return (
@@ -14,13 +14,13 @@ export default function ProviderPicker({ providers = [], selected, onSelect }) {
         <Picker
           selectedValue={selected?.id ?? ''}
           onValueChange={id => {
-            const provider = items.find(p => p.id === id);
+            const provider = items.find(p => p.id == id);
             if (provider) onSelect(provider);
           }}
           style={styles.picker}
           >
           {items.map(p => (
-            <Picker.Item key={p.id} label={p.name} value={p.id} />
+            <Picker.Item key={p.id} label={p.nombre} value={p.id} />
           ))}
         </Picker>      
         </View>

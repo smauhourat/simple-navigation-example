@@ -6,10 +6,10 @@ export default function OrderSummary({ products = [], selectedProducts = {} }) {
     let items = 0;
     let amount = 0;
     for (const [id, qty] of Object.entries(selectedProducts)) {
-      const p = products.find(x => x.id === id);
+      const p = products.find(x => x.id == id);
       if (p) {
         items += qty;
-        amount += p.price * qty;
+        amount += p.precio_unitario * qty;
       }
     }
     return { totalItems: items, totalAmount: amount };

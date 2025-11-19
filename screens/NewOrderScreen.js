@@ -32,25 +32,47 @@ export default function NewOrderScreen({ navigation }) {
   };  
 
   useEffect(() => {
-    setProviders(getProviders());
+    async function fetchProviders() {
+      const response = await getProviders();
+      setProviders(response.data);
+    }
+    fetchProviders();
   }, []);
 
   useEffect(() => {
-    if (selectedProvider) {
-      setProducts(getProductsForProvider(selectedProvider.id));
-      setSelectedProducts({});
-      setTempQuantities({}); // Limpiar cantidades temporales al cambiar proveedor
-    } else {
-      setProducts([]);
+    
+    // if (selectedProvider) {
+    //   setProducts(getProductsForProvider(selectedProvider.id));
+    //   setSelectedProducts({});
+    //   setTempQuantities({}); // Limpiar cantidades temporales al cambiar proveedor
+    // } else {
+    //   setProducts([]);
+    //   setSelectedProducts({});
+    //   setTempQuantities({});
+    // }
+
+    async function fetchProducts(providerId) {
       setSelectedProducts({});
       setTempQuantities({});
+      if (!providerId) {
+        setProducts([]);
+        return;
+      }
+      const response = await getProductsForProvider(providerId);
+      //console.log('Products fetched for provider', providerId, ':', response);      
+      setProducts(response);
     }
+
+    fetchProducts(selectedProvider?.id);
+    //console.log('Selected provider changed:', selectedProvider);
+    //console.log('Products set:', products);
+
   }, [selectedProvider]);
 
   const filteredProducts = React.useMemo(() => {
     const term = (searchTerm || '').trim().toLowerCase();
     if (!term) return products;
-    return products.filter(p => (p.name || '').toLowerCase().includes(term));
+    return products.filter(p => (p.nombre || '').toLowerCase().includes(term));
   }, [products, searchTerm]);
 
   // Cambiar cantidad TEMPORAL en Disponibles
@@ -88,6 +110,7 @@ export default function NewOrderScreen({ navigation }) {
       else next[productId] = qty;
       return next;
     });
+    //console.log('Changed assigned quantity:', selectedProducts);
   };
 
   // Eliminar de Asignados
@@ -107,23 +130,21 @@ export default function NewOrderScreen({ navigation }) {
     if (Object.keys(selectedProducts).length === 0) 
       return setShowAlert({show: true, title: 'Atencion!', showCancel: false, message: 'No existen productos en la Orden'});
 
-    // console.log('Crear orden', { selectedProvider, selectedProducts, deliveryDate });
-    // setShowAlert({show: true, title: 'Atencion!', message: 'Are you sure you want to create this orderrrrr?'});
+    const orderPayload = {
+      proveedorId: selectedProvider.id,
+      proveedorNombre: selectedProvider.name,
+      fechaEntrega: deliveryDate.toISOString(),
+      items: Object.entries(selectedProducts).map(([id, qty]) => {
+        const prod = products.find(p => p.id === id);
+        return { id, nombre: prod?.nombre || 'N/A', precio: prod?.precio_unitario || 0, cantidad: qty };
+      }),
+    };
     
-    // if (!selectedProvider) return Alert.alert('Selecciona un proveedor');
-    // if (Object.keys(selectedProducts).length === 0) return Alert.alert('Selecciona al menos un producto');
-    // const orderPayload = {
-    //   proveedorId: selectedProvider.id,
-    //   proveedorNombre: selectedProvider.name,
-    //   fechaEntrega: deliveryDate.toISOString(),
-    //   items: Object.entries(selectedProducts).map(([id, qty]) => {
-    //     const prod = products.find(p => p.id === id);
-    //     return { id, nombre: prod?.name || 'N/A', precio: prod?.price || 0, cantidad: qty };
-    //   }),
-    // };
-    // Alert.alert('Orden creada', `Items: ${orderPayload.items.length}`, [
-    //   { text: 'OK', onPress: () => navigation.navigate('Orders') },
-    // ]);
+    console.log('Order Payload:', orderPayload);
+    
+    Alert.alert('Orden creada', `Items: ${orderPayload.items.length}`, [
+      { text: 'OK', onPress: () => navigation.navigate('Orders') },
+    ]);
 
   };
 
