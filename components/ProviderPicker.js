@@ -9,7 +9,7 @@ export default function ProviderPicker({ providers = [], selected, onSelect }) {
   ];  
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>Fecha de entrega</Text>
+      <Text style={styles.label}>Proveedor</Text>
       <View style={styles.pickerContainer}>
         <Picker
           selectedValue={selected?.id ?? ''}

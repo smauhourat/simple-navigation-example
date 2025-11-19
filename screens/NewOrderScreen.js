@@ -132,20 +132,18 @@ export default function NewOrderScreen({ navigation }) {
 
     const orderPayload = {
       proveedorId: selectedProvider.id,
-      proveedorNombre: selectedProvider.name,
+      proveedorNombre: selectedProvider.nombre,
       fechaEntrega: deliveryDate.toISOString(),
       items: Object.entries(selectedProducts).map(([id, qty]) => {
-        const prod = products.find(p => p.id === id);
+        const prod = products.find(p => p.id == id);
         return { id, nombre: prod?.nombre || 'N/A', precio: prod?.precio_unitario || 0, cantidad: qty };
       }),
     };
     
     console.log('Order Payload:', orderPayload);
-    
-    Alert.alert('Orden creada', `Items: ${orderPayload.items.length}`, [
-      { text: 'OK', onPress: () => navigation.navigate('Orders') },
-    ]);
 
+    // navegar a pantalla de revisión antes de crear
+    navigation.navigate('OrderReview', { orderPayload });
   };
 
   return (
@@ -215,7 +213,7 @@ export default function NewOrderScreen({ navigation }) {
       />
 
       <View style={styles.actions}>
-        <CustomButton title="Crear Pedido" onPress={handleCreateOrder} />
+        <CustomButton title="REVISAR PEDIDO" onPress={handleCreateOrder} />
       </View>
     </ScrollView>
   );
