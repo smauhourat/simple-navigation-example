@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Alert, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, Alert, ScrollView, Modal } from 'react-native';
 import CustomAlert from '../components/ui/CustomAlert';
 import ProviderPicker from '../components/ProviderPicker';
 import ProductList from '../components/ProductList';
@@ -9,6 +9,7 @@ import CustomButton from '../components/ui/CustomButton';
 import { getProviders, getProductsForProvider } from '../lib/api';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import ProductSearch from '../components/ProductSearch';
+import OrderReviewScreen from './OrderReviewScreen';
 
 export default function NewOrderScreen({ navigation }) {
   const [providers, setProviders] = useState([]);
@@ -18,6 +19,7 @@ export default function NewOrderScreen({ navigation }) {
   const [tempQuantities, setTempQuantities] = useState({}); // Cantidades temporales en Disponibles: {productId: quantity}
   const [deliveryDate, setDeliveryDate] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [showAlert, setShowAlert] = useState({show: false, message: ''});
 
@@ -214,7 +216,11 @@ export default function NewOrderScreen({ navigation }) {
 
       <View style={styles.actions}>
         <CustomButton title="REVISAR PEDIDO" onPress={handleCreateOrder} />
+        <CustomButton title="VER PEDIDO" variant="secondary" onPress={() => setModalVisible(true)} />
       </View>
+      {/* <Modal visible={modalVisible} animationType="slide">
+        <OrderReviewScreen />
+      </Modal> */}
     </ScrollView>
   );
 }
