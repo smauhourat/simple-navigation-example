@@ -29,7 +29,8 @@ const styles = StyleSheet.create({
   card: {
     width: "95%",                     // ✅ ocupa el 95% del ancho del contenedor
     alignSelf: "center",              // ✅ centra horizontalmente
-    backgroundColor: "#f8f8f8",
+    backgroundColor: "#ffffff",
+    // backgroundColor: "#f8f8f8",
     padding: 12,
     borderRadius: 8,
     marginBottom: 10,

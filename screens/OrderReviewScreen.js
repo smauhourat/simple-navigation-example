@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, FlatList, Alert } from 'react-native';
+import CustomAlert from '../components/ui/CustomAlert';
 import CustomButton from '../components/ui/CustomButton';
 import { createOrder } from '../lib/api';
 
 export default function OrderReviewScreen({ route, navigation }) {
   const { orderPayload } = route.params;
   const [loading, setLoading] = useState(false);
+  const [showAlert, setShowAlert] = useState({show: false, message: ''});
 
   const totalAmount = orderPayload.items.reduce((s, it) => s + (it.precio || 0) * it.cantidad, 0);
   const totalItems = orderPayload.items.reduce((s, it) => s + it.cantidad, 0);
@@ -14,18 +16,32 @@ export default function OrderReviewScreen({ route, navigation }) {
     setLoading(true);
     try {
       await createOrder(orderPayload);
+      gotToOrders();
+    //   setShowAlert({show: true, title: 'Atencion!', showCancel: false, message: 'Orden creada correctamente'});
+
       setLoading(false);
-      Alert.alert('Éxito', 'Orden creada correctamente', [
-        { text: 'OK', onPress: () => navigation.navigate('Orders') },
-      ]);
     } catch (err) {
-      setLoading(false);
-      Alert.alert('Error', 'No se pudo crear la orden');
+    //   setLoading(false);
+    //   setShowAlert({show: true, title: 'Atencion!', showCancel: false, message: 'No se pudo crear la orden'});
     }
   };
 
+  const gotToOrders = () => {
+    console.log('Navigating to Orders screen');
+    // setShowAlert({show: false, message: ''});
+    navigation.navigate('Orders');
+  }
+
   return (
     <View style={styles.container}>
+        <CustomAlert
+          visible={showAlert.show}
+          title={showAlert?.title || 'Aviso'}
+          message={showAlert.message}
+          onConfirm={gotToOrders}
+          onCancel={null}
+          showCancel={false}
+        />        
       <View style={styles.headerSummary}>
         <Text style={[styles.text, { marginBottom: 8}]}>Proveedor: {orderPayload.proveedorNombre}</Text>
         <Text style={styles.text}>Fecha de entrega: {new Date(orderPayload.fechaEntrega).toLocaleDateString()}</Text>
