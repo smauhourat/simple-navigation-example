@@ -229,7 +229,7 @@ const styles = StyleSheet.create({
   container: { padding: 16, paddingBottom: 40 },
   h1: { fontSize: 20, fontWeight: '700', marginBottom: 12 },
   section: { marginVertical: 12 },
-  label: { fontWeight: '600', marginBottom: 8 },
+  label: { fontWeight: '600', marginBottom: 8, fontFamily: 'Nunito-Bold' },
   hint: { color: '#666', marginVertical: 12 },
-  actions: { marginTop: 20 },
+  actions: { marginTop: 20, gap: 12  },
 });

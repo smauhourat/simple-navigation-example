@@ -5,12 +5,11 @@ export default function OrderItem({ item }) {
         <View style={styles.container}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                 <View>
-                    <Text style={{ paddingTop: 0, fontWeight: '600' }}>{item.producto_nombre} - {item.cantidad} {item.producto_unidad_medida}</Text>
-                    <Text style={{ paddingTop: 0, textTransform: 'lowercase' }}>{item.producto_descripcion} - PU: ${item.precio_unitario.toFixed(2)}</Text>
+                    <Text style={{ paddingTop: 0, fontWeight: '600', fontFamily: 'Nunito-Bold' }}>{item.producto_nombre} - {item.cantidad} {item.producto_unidad_medida}</Text>
+                    <Text style={{ paddingTop: 0, textTransform: 'lowercase', fontFamily: 'Nunito-Medium' }}>{item.producto_descripcion} - PU: ${item.precio_unitario.toFixed(2)}</Text>
                 </View>
                 <View style={{ alignItems: 'flex-end' }}>
-                    {/* <Text style={{ paddingTop: 0, color: 'green', fontWeight: '500' }}>{item.cantidad} {item.producto_unidad_medida}</Text> */}
-                    <Text style={{ paddingTop: 0, color: 'green', fontWeight: '500' }}>${item.subtotal.toFixed(2)}</Text>
+                    <Text style={{ paddingTop: 0, color: 'green', fontWeight: '500', fontFamily: 'Nunito-Bold' }}>${item.subtotal.toFixed(2)}</Text>
                 </View>
             </View>
         </View>

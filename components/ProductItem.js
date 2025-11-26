@@ -67,8 +67,17 @@ const styles = StyleSheet.create({
   rowAssigned: {
     backgroundColor: '#EAF6ED'
   },
-  name: { fontWeight: '600', fontSize: 14 },
-  price: { color: '#666', fontSize: 12, marginTop: 4 },
+  name: { 
+    fontWeight: '600', 
+    fontSize: 14,
+    fontFamily: 'Nunito-Bold',
+  },
+  price: { 
+    color: '#666', 
+    fontSize: 12, 
+    marginTop: 4,
+    fontFamily: 'Nunito-Medium',
+  },
   controls: { 
     flexDirection: 'row', 
     alignItems: 'center',

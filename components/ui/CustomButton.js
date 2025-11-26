@@ -12,5 +12,5 @@ export default function CustomButton({ title, onPress, variant = 'primary', styl
 
 const styles = StyleSheet.create({
   btn: { paddingVertical: 10, paddingHorizontal: 12, borderRadius: 6, alignItems: 'center' },
-  text: { color: '#fff', fontWeight: '600' },
+  text: { color: '#fff', fontWeight: '600', fontFamily: 'Nunito-Medium' },
 });

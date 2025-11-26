@@ -64,11 +64,13 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginBottom: 15,
         textAlign: 'center',
+        fontFamily: 'Nunito-Bold',
       },
       modalMessage: {
         fontSize: 16,
         marginBottom: 20,
         textAlign: 'center',
+        fontFamily: 'Nunito-Medium',
       },
       buttonContainer: {
         flexDirection: 'row',
@@ -86,6 +88,7 @@ const styles = StyleSheet.create({
       buttonText: {
         color: 'black',
         fontWeight: 'bold',
+        fontFamily: 'Nunito-Medium',
       },
       confirmButton: {
         backgroundColor: '#2196F3',

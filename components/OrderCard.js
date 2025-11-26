@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
   title: {
     fontWeight: "bold",
     fontSize: 16,
+    fontFamily: 'Nunito-Bold',
   },
   row: {
     flexDirection: 'row',
@@ -53,8 +54,14 @@ const styles = StyleSheet.create({
   },  
   status: {
     backgroundColor: "#d1e7dd",
-        paddingHorizontal: 8,
-        paddingVertical: 4,
-        borderRadius: 4,
-  }
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 4,
+    fontFamily: 'Nunito-Medium',
+  },
+  detail: {
+    fontSize: 14,
+    fontFamily: 'Nunito-Medium',
+  },
+  
 });    

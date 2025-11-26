@@ -23,11 +23,11 @@ export default function OrderDetails({ order }) {
             </View>
             <View style={styles.cardContent}>
                 <View style={[styles.row, { justifyContent: 'space-between' }]}>
-                    <Text>Fecha: {order.fecha}</Text>
+                    <Text style={styles.textH1Light}>Fecha: {order.fecha}</Text>
                     <Text style={styles.textH1}>Total: ${order.total?.toFixed(2)}</Text>
                 </View>
                 <View style={[styles.row, { justifyContent: 'space-between' }]}>    
-                    <Text>Proveedor: {order.proveedor_nombre}</Text>
+                    <Text style={styles.textH1Light}>Proveedor: {order.proveedor_nombre}</Text>
                     <Text style={styles.textH1}>Items: {order.renglones?.length}</Text>
                 </View>
                 <Text style={{ paddingTop: 15, fontWeight: '600', fontSize: 16 }}>Detalle del Pedido</Text>
@@ -92,6 +92,7 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontWeight: 'bold',
         color: '#f8f8f8',
+        fontFamily: 'Nunito-Bold',
     },
     textHeaderEstado: {
         fontSize: 14,
@@ -101,9 +102,15 @@ const styles = StyleSheet.create({
         paddingVertical: 4,
         borderRadius: 4,
         backgroundColor: '#ff9800',
+        fontFamily: 'Nunito-Bold',
     },    
     textH1: {
-        fontSize: 16,
+        fontSize: 14,
         fontWeight: "600",
+        fontFamily: 'Nunito-Bold',
+    },
+    textH1Light: {
+        fontSize: 14,
+        fontFamily: 'Nunito-Medium',
     },
 });

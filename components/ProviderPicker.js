@@ -30,11 +30,24 @@ export default function ProviderPicker({ providers = [], selected, onSelect }) {
 
 const styles = StyleSheet.create({
   container: { marginVertical: 4 },
-  label: { fontWeight: '600', marginBottom: 4 },
-      pickerContainer: {
-        borderRadius: 5,
-        overflow: 'hidden', // Important for applying borderRadius to the picker itself
-        marginVertical: 2,
-      },  
-  picker: { backgroundColor: '#fff', borderRadius: 6, paddingVertical: 10, paddingHorizontal: 12, borderWidth: 1, borderColor: '#ccc' },
+  label: { 
+    fontWeight: '600', 
+    marginBottom: 4,
+    fontSize: 14,
+    fontFamily: 'Nunito-Bold', 
+  },
+  pickerContainer: {
+    borderRadius: 5,
+    overflow: 'hidden', // Important for applying borderRadius to the picker itself
+    marginVertical: 2,
+  },  
+  picker: { 
+    backgroundColor: '#fff', 
+    borderRadius: 6, 
+    paddingVertical: 10, 
+    paddingHorizontal: 12, 
+    borderWidth: 1, 
+    borderColor: '#ccc',
+    fontFamily: 'Nunito-Medium',
+  },
 });

@@ -25,5 +25,5 @@ export default function OrderSummary({ products = [], selectedProducts = {} }) {
 
 const styles = StyleSheet.create({
   container: { marginTop: 12, padding: 12, backgroundColor: '#fff', borderRadius: 6, flexDirection: 'row', justifyContent: 'space-between' },
-  text: { fontWeight: '600' },
+  text: { fontWeight: '600', fontFamily: 'Nunito-Bold' },
 });

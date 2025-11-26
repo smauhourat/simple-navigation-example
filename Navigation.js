@@ -22,12 +22,18 @@ function StackOrders() {
             <OrderStackNavigation.Screen
                 name="OrdersScreenX"
                 component={OrdersScreen}
-                options={{ title: 'Lista de Pedidos' }}
+                options={{ 
+                    title: 'Lista de Pedidos',
+                    headerTitleStyle: { fontFamily: 'Nunito-Bold' },
+                 }}
             />
             <OrderStackNavigation.Screen
                 name="OrderDetailsScreen"
                 component={OrderDetailsScreen}
-                options={{ title: 'Detalle Pedido' }}
+                options={{ 
+                    title: 'Detalle Pedido',
+                    headerTitleStyle: { fontFamily: 'Nunito-Bold' }, 
+            }}
             />
         </OrderStackNavigation.Navigator>
     );
@@ -41,12 +47,17 @@ function StackNewOrder() {
             <NewOrderStackNavigation.Screen
                 name="NewOrderScreenX"
                 component={NewOrderScreen}
-                options={{ title: 'Nuevo Pedido' }}
+                options={{ 
+                    title: 'Nuevo Pedido',
+                headerTitleStyle: { fontFamily: 'Nunito-Bold' },
+             }}
             />
             <NewOrderStackNavigation.Screen
                 name="OrderReview"
                 component={OrderReviewScreen}
-                options={{ title: 'Resumen de Orden' }}
+                options={{ 
+                    title: 'Resumen de Orden',
+                headerTitleStyle: { fontFamily: 'Nunito-Bold' }, }}
             />
         </NewOrderStackNavigation.Navigator>
     );
@@ -61,6 +72,7 @@ function Navigation() {
                     component={HomeScreen} 
                     options={{ 
                         title: 'RestoApp',
+                        headerShown: false,
                         tabBarIcon: (props) => <Icon name="home-outline" {...props} /> 
                     }} 
                 />
@@ -71,6 +83,7 @@ function Navigation() {
                     options={{ 
                         title: 'Pedidos',
                         headerShown: false,
+                        headerTitleStyle: { fontFamily: 'Nunito-Bold' },
                         tabBarIcon: (props) => <Icon name="book-outline" {...props} /> 
                     }} 
                     listeners={({ navigation }) => ({
@@ -86,6 +99,7 @@ function Navigation() {
                     options={{ 
                         title: 'Nuevo Pedido',
                         headerShown: false,
+                        headerTitleStyle: { fontFamily: 'Nunito-Bold' },
                         tabBarIcon: (props) => <Icon name="book-plus-outline" {...props} /> 
                     }} 
                 />

@@ -47,5 +47,5 @@ const styles = StyleSheet.create({
     borderLeftWidth: 4,
     borderLeftColor: '#28a745',
   },
-  emptyText: { color: '#2e7d32', fontStyle: 'italic' },
+  emptyText: { color: '#2e7d32', fontStyle: 'italic', fontFamily: 'Nunito-Medium' },
 });

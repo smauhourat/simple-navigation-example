@@ -35,6 +35,11 @@ const styles = StyleSheet.create({
     elevation: 1,
   },
   icon: { marginRight: 8 },
-  input: { flex: 1, padding: 0, color: '#111' },
+  input: { 
+    flex: 1, 
+    padding: 0, 
+    color: '#111', 
+    fontFamily: 'Nunito-Medium' 
+  },
   clear: { marginLeft: 8 },
 });

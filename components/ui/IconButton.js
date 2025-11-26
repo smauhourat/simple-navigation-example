@@ -30,5 +30,6 @@ const styles = StyleSheet.create({
         marginRight: 8,
         fontWeight: '600',
         fontSize: 14,
+        fontFamily: 'Nunito-Medium',
       },    
 });
