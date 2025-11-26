@@ -12,7 +12,7 @@ const OrdersScreen = ({ navigation  }) => {
       setOrders(response.data);
     }
     fetchOrders();
-  });
+  }, []);
 
   return (
     <View style={styles.container}>
