@@ -24,7 +24,8 @@ function StackOrders() {
                 component={OrdersScreen}
                 options={{ 
                     title: 'Lista de Pedidos',
-                    headerTitleStyle: { fontFamily: 'Nunito-Bold' },
+                    headerTitleStyle: { fontFamily: 'Nunito-Bold', fontSize: 22},
+                    headerTitleAlign: 'center'
                  }}
             />
             <OrderStackNavigation.Screen
@@ -32,7 +33,8 @@ function StackOrders() {
                 component={OrderDetailsScreen}
                 options={{ 
                     title: 'Detalle Pedido',
-                    headerTitleStyle: { fontFamily: 'Nunito-Bold' }, 
+                    headerTitleStyle: { fontFamily: 'Nunito-Bold', fontSize: 22 },
+                    headerTitleAlign: 'center' 
             }}
             />
         </OrderStackNavigation.Navigator>
@@ -49,7 +51,8 @@ function StackNewOrder() {
                 component={NewOrderScreen}
                 options={{ 
                     title: 'Nuevo Pedido',
-                headerTitleStyle: { fontFamily: 'Nunito-Bold' },
+                    headerTitleStyle: { fontFamily: 'Nunito-Bold', fontSize: 22},
+                    headerTitleAlign: 'center'
              }}
             />
             <NewOrderStackNavigation.Screen
@@ -57,7 +60,9 @@ function StackNewOrder() {
                 component={OrderReviewScreen}
                 options={{ 
                     title: 'Resumen de Orden',
-                headerTitleStyle: { fontFamily: 'Nunito-Bold' }, }}
+                    headerTitleStyle: { fontFamily: 'Nunito-Bold', fontSize: 22 }, 
+                    headerTitleAlign: 'center'
+            }}
             />
         </NewOrderStackNavigation.Navigator>
     );

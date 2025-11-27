@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   label: { 
     fontWeight: '600', 
     marginBottom: 10, 
-    fontSize: 18,
+    fontSize: 16,
     fontFamily: 'Nunito-Bold',
   }, 
   emptyContainer: { 

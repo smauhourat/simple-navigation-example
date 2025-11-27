@@ -188,11 +188,11 @@ export default function NewOrderScreen({ navigation }) {
       />
 
       <View style={styles.section}>
-        <Text style={styles.label}>Fecha de entrega</Text>
+        {/* <Text style={styles.label}>Fecha de entrega</Text> */}
         <CustomButton
           title={deliveryDate.toLocaleDateString()}
           onPress={() => setShowDatePicker(true)}
-          variant="secondary"
+          
         />
         {showDatePicker && (
           <DateTimePicker
