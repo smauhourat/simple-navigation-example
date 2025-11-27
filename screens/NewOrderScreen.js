@@ -16,13 +16,43 @@ export default function NewOrderScreen({ navigation }) {
   const [providers, setProviders] = useState([]);
   const [selectedProvider, setSelectedProvider] = useState(null);
   const [products, setProducts] = useState([]);
-  const [selectedProducts, setSelectedProducts] = useState({}); // Productos asignados: {productId: quantity}
-  const [tempQuantities, setTempQuantities] = useState({}); // Cantidades temporales en Disponibles: {productId: quantity}
+  const [selectedProducts, setSelectedProducts] = useState({});
+  const [tempQuantities, setTempQuantities] = useState({});
   const [deliveryDate, setDeliveryDate] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [showAlert, setShowAlert] = useState({show: false, message: ''});
+
+  const resetForm = React.useCallback(() => {
+    setSelectedProvider(null);
+    setProducts([]);
+    setSelectedProducts({});
+    setTempQuantities({});
+    setDeliveryDate(new Date());
+    setShowDatePicker(false);
+    setSearchTerm('');
+    setModalVisible(false);
+    setShowAlert({show: false, message: ''});
+  }, []);
+
+  // reset when the parent Tab navigator loses focus (user switches to another tab)
+  useEffect(() => {
+    // find nearest ancestor that is a tab navigator (walk up parents)
+    let parent = navigation.getParent();
+    while (parent && parent.getParent) {
+      const state = parent.getState?.();
+      if (state?.type === 'tab') break;
+      parent = parent.getParent();
+    }
+    const tabNav = parent;
+    if (!tabNav || !tabNav.addListener) return;
+    const unsubscribe = tabNav.addListener('blur', () => {
+      // tab lost focus (user switched to another tab)
+      resetForm();
+    });
+    return unsubscribe;
+  }, [navigation, resetForm]);
 
   const handleConfirm = () => {
     console.log('Confirmed!');
