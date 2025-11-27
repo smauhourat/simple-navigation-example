@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { View, Text, StyleSheet, Alert, ScrollView, Modal } from 'react-native';
 import CustomAlert from '../components/ui/CustomAlert';
 import ProviderPicker from '../components/ProviderPicker';
@@ -10,6 +10,7 @@ import { getProviders, getProductsForProvider } from '../lib/api';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import ProductSearch from '../components/ProductSearch';
 import OrderReviewScreen from './OrderReviewScreen';
+import { useFocusEffect } from '@react-navigation/native';
 
 export default function NewOrderScreen({ navigation }) {
   const [providers, setProviders] = useState([]);
@@ -42,17 +43,6 @@ export default function NewOrderScreen({ navigation }) {
   }, []);
 
   useEffect(() => {
-    
-    // if (selectedProvider) {
-    //   setProducts(getProductsForProvider(selectedProvider.id));
-    //   setSelectedProducts({});
-    //   setTempQuantities({}); // Limpiar cantidades temporales al cambiar proveedor
-    // } else {
-    //   setProducts([]);
-    //   setSelectedProducts({});
-    //   setTempQuantities({});
-    // }
-
     async function fetchProducts(providerId) {
       setSelectedProducts({});
       setTempQuantities({});
@@ -61,15 +51,17 @@ export default function NewOrderScreen({ navigation }) {
         return;
       }
       const response = await getProductsForProvider(providerId);
-      //console.log('Products fetched for provider', providerId, ':', response);      
       setProducts(response);
     }
 
     fetchProducts(selectedProvider?.id);
-    //console.log('Selected provider changed:', selectedProvider);
-    //console.log('Products set:', products);
-
   }, [selectedProvider]);
+
+  useFocusEffect(
+      useCallback(() => {
+        console.log('NewOrderScreen focused')
+      }, [])
+  );
 
   const filteredProducts = React.useMemo(() => {
     const term = (searchTerm || '').trim().toLowerCase();
