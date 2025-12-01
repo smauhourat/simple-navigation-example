@@ -3,7 +3,7 @@ import { Pressable, Text, StyleSheet } from 'react-native';
 
 export default function CustomButton({ title, onPress, variant = 'primary', style }) {
   const background = variant === 'secondary' ? '#b4b6b8ff' : '#1976d2';
-  const textColor = variant === 'secondary' ? '#000000ff' : '#ffffff';
+  const textColor = variant === 'secondary' ? '#222222ff' : '#ffffff';
   return (
     <Pressable onPress={onPress} style={({ pressed }) => [styles.btn, { backgroundColor: background, opacity: pressed ? 0.85 : 1 }, style]}>
       <Text style={[styles.text, { color: textColor}]}>{title}</Text>
